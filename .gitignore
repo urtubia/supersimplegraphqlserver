@@ -1,0 +1,6 @@
+# add common python gitignore entries
+.venv
+*.pyc
+*.pyo
+*.pyd
+__pycache__
