@@ -1,5 +1,5 @@
 from typing import List, Optional
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship, Session, sessionmaker
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, sessionmaker
 from sqlalchemy import Text, create_engine, select, delete, update
 import contextlib
 

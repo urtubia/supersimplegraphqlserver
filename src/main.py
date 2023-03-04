@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 import strawberry
 from strawberry.fastapi import GraphQLRouter
 from strawberry.types import Info
-from uuid import uuid4
 from typing import List
 from .db import db
 
