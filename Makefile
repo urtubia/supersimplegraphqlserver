@@ -1,4 +1,5 @@
 APPNAME=webapp
+CURRENT_FOLDER_NAME=$(shell basename $(PWD))
 
 # local targets
 setup-local-dev:
@@ -21,8 +22,7 @@ up:
 start-docker: build up
 
 shell:
-	# shell into image mounting the current directory as a volume
-	docker run -it --rm -v $(PWD):/app -w /app supersimplegraphqlserver_$(APPNAME) /bin/bash
+	docker run -it --rm -v $(PWD):/app -w /app $(CURRENT_FOLDER_NAME)_$(APPNAME) /bin/bash
 
 attach:
-	docker exec -it supersimplegraphqlserver_$(APPNAME)_1 /bin/bash
+	docker exec -it $(CURRENT_FOLDER_NAME)_$(APPNAME)_1 /bin/bash
