@@ -2,6 +2,8 @@
 
 This repository contains a simple GraphQL server built using [Strawberry GraphQL](https://strawberry.rocks/) and [SQLAlchemy](https://www.sqlalchemy.org/). 
 
+For a client that uses this server, see [supersimplereactgraphqlclient](https://github.com/urtubia/supersimplereactgraphqlclient)
+
 ## Requirements
 
 - Python 3.10+
