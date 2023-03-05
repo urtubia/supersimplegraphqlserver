@@ -18,11 +18,8 @@ class BookInput:
     title: str
 
 @strawberry.type
-class MutationResult:
-    result: str
-
-@strawberry.type
 class BookMutationResult:
+    success: bool
     book: Book
 
 @strawberry.type
@@ -32,20 +29,22 @@ class Mutation:
         with db.session_scope() as session:
             db_book = db.add_book_with_title(session, title=book.title)
             book = Book(id=db_book.id, title=db_book.title)
-            return BookMutationResult(book=book)
+            return BookMutationResult(book=book, success=True)
 
     @strawberry.mutation
-    def delete_book(info: Info, book_id: strawberry.ID) -> MutationResult:
+    def delete_book(info: Info, book_id: strawberry.ID) -> BookMutationResult:
         with db.session_scope() as session:
+            db_book = db.get_book_by_id(session, book_id=int(book_id))
+            book = Book(id=db_book.id, title=db_book.title)
             db.delete_book(session, book_id=int(book_id))
-        return MutationResult(result="success")
+        return BookMutationResult(book=book, success=True)
 
     @strawberry.mutation
     def edit_book(info: Info, book_id: strawberry.ID, book: BookInput) -> BookMutationResult:
         with db.session_scope() as session:
             db_book = db.update_book(session, book_id=int(book_id), title=book.title)
             book = Book(id=db_book.id, title=db_book.title)
-            return BookMutationResult(book=book)
+            return BookMutationResult(book=book, success=True)
 
 @strawberry.type
 class Query:
